@@ -18,5 +18,9 @@
 @theme {
   --color-bgapp: var(--main-bg-app);
   --main-color-app: #3a2729;
+  --color-brown: var(--main-color-app);
   --color-secondbg: #f3e6e2;
+  --color-textsecond: rgb(
+    143 80 90 / var(--tw-text-opacity, 1)
+  );
 }

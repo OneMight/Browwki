@@ -1,16 +1,32 @@
-import type { User } from "@/types/interfaces";
+import type { UserData } from "@/types/interfaces";
 import { axiosInstance } from ".";
+import { useQuery } from "@tanstack/react-query";
 
-export const LoginUser = async (
-  init_data: string | undefined
-) => {
-  try {
+export const useLoginUser = (init_data: string) => {
+  const LoginUser = async (): Promise<UserData> => {
     const response = await axiosInstance.post(
       "/api/auth/telegram",
       { init_data }
     );
     return response.data;
-  } catch (e) {
-    console.log("Auth Error: ", e);
-  }
+  };
+
+  const {
+    data: userData,
+    isLoading,
+    isError
+  } = useQuery({
+    queryKey: ["LoginUser", init_data],
+    queryFn: LoginUser,
+    enabled: !!init_data,
+    retry: 1,
+    staleTime: 60,
+    gcTime: 60
+  });
+
+  return {
+    userData,
+    isError,
+    isLoading
+  };
 };
