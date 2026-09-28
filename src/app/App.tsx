@@ -21,7 +21,7 @@ function App() {
   const user = getDataAboutUser();
   return (
     <main className="flex w-full p-5 justify-start items-start min-h-screen relative">
-      {isLoading ? (
+      {isLoading || isError ? (
         <Spinner className="size-8" />
       ) : (
         <div className="max-w-120 w-full flex flex-col gap-3">
