@@ -19,3 +19,12 @@ export interface AuthResponse {
   token_type: string;
   role: UserRole;
 }
+
+export interface Services {
+  id: number;
+  title: string;
+  description: string;
+  duration_minutes: number;
+  is_active: boolean;
+  price: number;
+}

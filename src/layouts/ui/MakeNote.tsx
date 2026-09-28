@@ -1,16 +1,29 @@
 import eyebrush from "@/assets/eyebrush_image.jpg";
 import { MapPin } from "lucide-react";
 import { useState } from "react";
+import { SelectService } from "./SelectService";
 export const MakeNote = () => {
   const [step, setStep] = useState(0);
+  const [selectedId, setSelectedId] = useState<
+    number | null
+  >(null);
+  const [price, setPrice] = useState<number | null>(null);
   const stepTitles = [
     "Выберите услугу",
     "Дата и время",
     "Проверьте запись"
   ];
+  const handleSetSelectedId = (
+    value: number,
+    price: number
+  ) => {
+    setSelectedId(value);
+    setPrice(price);
+  };
   const handleSetStep = () => {
     setStep((value) => value++);
   };
+
   return (
     <div className="flex flex-col gap-4 ">
       {step == 0 && (
@@ -51,13 +64,26 @@ export const MakeNote = () => {
           ))}
         </div>
       </div>
-      <div className="py-2 border-t-2 border-secondbg absolute bottom-0 w-full max-w-110">
+      <div className="flex flex-col items-start gap-4">
+        <SelectService
+          handleSetSelectedId={handleSetSelectedId}
+          selectedId={selectedId}
+        />
+      </div>
+      <div className="py-2 border-t-2 border-secondbg bg-bgapp w-full max-w-85 sticky bottom-0 z-50 ">
         <button
-          className="w-full rounded-xl cursor-pointer text-white bg-textsecond sticky h-10 disabled:opacity-45"
+          className="w-full rounded-xl cursor-pointer text-white items-center bg-textsecond sticky h-10 transition-all disabled:opacity-45"
           onClick={handleSetStep}
-          disabled
+          disabled={selectedId ? false : true}
         >
-          Продолжить
+          Продолжить{" "}
+          {price ? (
+            <span>
+              {price} <i className="nbrb-icon">BYN</i>
+            </span>
+          ) : (
+            ""
+          )}
         </button>
       </div>
     </div>

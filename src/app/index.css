@@ -1,10 +1,43 @@
 @import "tailwindcss";
-@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
+
+@font-face {
+  font-family: "nbrb";
+  src:
+    url("/fonts/byn/nbrb.woff2") format("woff2"),
+    url("/fonts/byn/nbrb.ttf") format("truetype"),
+    url("/fonts/byn/nbrb.woff") format("woff");
+  unicode-range: U+E901, U+42, U+59, U+4E;
+}
+.nbrb-icon {
+  font-family: "nbrb" !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: normal;
+  -webkit-font-feature-settings: "liga";
+  -moz-font-feature-settings: "liga=1";
+  -moz-font-feature-settings: "liga";
+  -ms-font-feature-settings: "liga" 1;
+  font-feature-settings: "liga";
+  -webkit-font-variant-ligatures: discretionary-ligatures;
+  font-variant-ligatures: discretionary-ligatures;
+}
+
+.nbrb-icon-byn:before {
+  content: "\e901";
+}
+
 #root {
   background-color: var(--main-bg-app);
   min-height: 100vh;
   display: flex;
-  font-family: "Playfair Display", serif;
+  font-weight: 400;
+  font-family: "IBM Plex Serif", serif;
   color: var(--main-color-app);
   -webkit-font-smoothing: antialiased;
 }
@@ -22,5 +55,8 @@
   --color-secondbg: #f3e6e2;
   --color-textsecond: rgb(
     143 80 90 / var(--tw-text-opacity, 1)
+  );
+  --color-line: rgb(
+    143 80 90 / var(--tw-text-opacity, 0.2)
   );
 }

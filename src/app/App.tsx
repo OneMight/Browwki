@@ -20,7 +20,7 @@ function App() {
 
   const user = getDataAboutUser();
   return (
-    <main className="flex w-full p-5 justify-center items-center min-h-screen relative">
+    <main className="flex w-full p-5 justify-start items-start min-h-screen relative">
       {isLoading ? (
         <Spinner className="size-8" />
       ) : (

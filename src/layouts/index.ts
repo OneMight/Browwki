@@ -1,3 +1,3 @@
 import { ClientLayout } from "./ui/ClientLayout";
-
-export { ClientLayout };
+import { SelectService } from "./ui/SelectService";
+export { ClientLayout, SelectService };
