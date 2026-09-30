@@ -19,19 +19,20 @@ function App() {
   }, [userData]);
 
   const user = getDataAboutUser();
-  return (
-    <main className="flex w-full p-5 justify-start items-start min-h-screen relative">
-      {isLoading || isError ? (
+  if (isLoading || isError) {
+    return (
+      <main className="flex w-full min-h-screen items-center justify-center">
         <Spinner className="size-8" />
+      </main>
+    );
+  }
+  return (
+    <main className="flex w-full p-5 min-h-screen max-w-120 flex-col gap-3 ">
+      <Header />
+      {user.role !== "ADMIN" ? (
+        <div></div>
       ) : (
-        <div className="max-w-120 w-full flex flex-col gap-3">
-          <Header />
-          {user.role !== "ADMIN" ? (
-            <div></div>
-          ) : (
-            <ClientLayout />
-          )}
-        </div>
+        <ClientLayout />
       )}
     </main>
   );

@@ -42,6 +42,9 @@
   -webkit-font-smoothing: antialiased;
 }
 
+body {
+  min-height: 100vh;
+}
 :root {
   --main-bg-app: rgb(252 248 244 / var(--tw-bg-opacity, 1));
   --main-color-app: #3a2729;

@@ -28,3 +28,35 @@ export interface Services {
   is_active: boolean;
   price: number;
 }
+export type ScheduledDates = {
+  id: number;
+  datetime_start: string;
+  is_available: boolean;
+};
+export type FilteredScheduledDates = {
+  id: number;
+  date: string;
+  time: string;
+  isAvailable: boolean;
+};
+export interface SelectDateProps {
+  dates: FilteredScheduledDates[] | undefined;
+  handleBackStep: () => void;
+  handleSeletedTimeId: (value: number) => void;
+  selectedTimeId: number | null;
+}
+export type Date = {
+  date: string;
+  availables_time_count: number;
+};
+export interface DaysProps {
+  selectedId: string | null;
+  dates: FilteredScheduledDates[] | undefined;
+  handleSelectDate: (i: string) => void;
+}
+export interface TimeServiceProps {
+  selectedId: string | null;
+  selectedTimeId: number | null;
+  onSelectTimeId: (value: number) => void;
+  dates: FilteredScheduledDates[] | undefined;
+}

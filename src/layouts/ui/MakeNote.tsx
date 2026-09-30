@@ -1,13 +1,33 @@
 import eyebrush from "@/assets/eyebrush_image.jpg";
-import { MapPin } from "lucide-react";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { SelectService } from "./SelectService";
+import { SelectDate } from "./SelectDate";
+import { useGetDate } from "@/api/servicesApi";
+import { motion } from "framer-motion";
+import { toKey } from "@/utils/formatData";
+import { getTime } from "@/utils/formatData";
 export const MakeNote = () => {
+  const { schedule } = useGetDate();
   const [step, setStep] = useState(0);
   const [selectedId, setSelectedId] = useState<
     number | null
   >(null);
+  const [selectedTimeId, setSelectedTimeId] = useState<
+    null | number
+  >(null);
+  const filteredDates = useMemo(
+    () =>
+      schedule?.map((elem) => ({
+        id: elem.id,
+        date: toKey(elem.datetime_start),
+        time: getTime(elem.datetime_start),
+        isAvailable: elem.is_available
+      })),
+    [schedule]
+  );
   const [price, setPrice] = useState<number | null>(null);
+  const isButtonDisabled =
+    step === 0 ? !selectedId : !selectedTimeId;
   const stepTitles = [
     "Выберите услугу",
     "Дата и время",
@@ -21,11 +41,17 @@ export const MakeNote = () => {
     setPrice(price);
   };
   const handleSetStep = () => {
-    setStep((value) => value++);
+    setStep((value) => value + 1);
+    setSelectedId(null);
   };
-
+  const handleBackStep = () => {
+    setStep((value) => value - 1);
+  };
+  const handleSeletedTimeId = (value: number) => {
+    setSelectedTimeId(value);
+  };
   return (
-    <div className="flex flex-col gap-4 ">
+    <div className="flex flex-col gap-4 mb-4 pb-10">
       {step == 0 && (
         <div className="flex flex-col items-start gap-2">
           <img
@@ -39,21 +65,8 @@ export const MakeNote = () => {
               подчеркивают Вас
             </span>
           </h2>
-          <span className="flex flex-row gap-1 items-center text-textsecond opacity-80 text-sm">
-            <MapPin />
-            <a
-              href="https://maps.app.goo.gl/spuJ2s85kG7bScbJ9"
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              {" "}
-              Елизавета Чиндо | пр. Фрунзе, 23к2 | 5 этаж,
-              102A
-            </a>
-          </span>
         </div>
       )}
-
       <div className="flex flex-col w-full">
         <div className="flex gap-1.5" aria-hidden>
           {stepTitles.map((_, i) => (
@@ -64,17 +77,37 @@ export const MakeNote = () => {
           ))}
         </div>
       </div>
-      <div className="flex flex-col items-start gap-4">
-        <SelectService
-          handleSetSelectedId={handleSetSelectedId}
-          selectedId={selectedId}
-        />
-      </div>
-      <div className="py-2 border-t-2 border-secondbg bg-bgapp w-full max-w-85 sticky bottom-0 z-50 ">
+      <motion.div
+        className="flex flex-col items-start gap-4"
+        key={step}
+        initial={{ opacity: 0, x: 16 }}
+        animate={{ opacity: 1, x: 0 }}
+        exit={{ opacity: 0, x: -16 }}
+        transition={{
+          duration: 0.2,
+          ease: [0.23, 1, 0.32, 1]
+        }}
+      >
+        {step == 0 && (
+          <SelectService
+            handleSetSelectedId={handleSetSelectedId}
+            selectedId={selectedId}
+          />
+        )}
+        {step == 1 && (
+          <SelectDate
+            handleSeletedTimeId={handleSeletedTimeId}
+            selectedTimeId={selectedTimeId}
+            handleBackStep={handleBackStep}
+            dates={filteredDates}
+          />
+        )}
+      </motion.div>
+      <div className="sticky py-2 border-t-2 border-secondbg bg-bgapp max-w-110 w-full  bottom-0 z-50 ">
         <button
-          className="w-full rounded-xl cursor-pointer text-white items-center bg-textsecond sticky h-10 transition-all disabled:opacity-45"
+          className="w-full rounded-xl cursor-pointer text-white items-center bg-textsecond h-10 transition-all disabled:opacity-45"
           onClick={handleSetStep}
-          disabled={selectedId ? false : true}
+          disabled={isButtonDisabled}
         >
           Продолжить{" "}
           {price ? (

@@ -16,7 +16,9 @@ export const ClientLayout = () => {
       </Tabs.TabsList>
       <Tabs.TabsContent
         value={"MakeNote"}
-        className={"border-t-2 w-full border-secondbg pt-5"}
+        className={
+          "border-t-2 w-full relative border-secondbg pt-5"
+        }
       >
         <MakeNote />
       </Tabs.TabsContent>

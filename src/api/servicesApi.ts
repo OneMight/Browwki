@@ -1,4 +1,7 @@
-import type { Services } from "@/types/interfaces";
+import type {
+  ScheduledDates,
+  Services
+} from "@/types/interfaces";
 import { axiosInstance } from ".";
 import { useQuery } from "@tanstack/react-query";
 
@@ -23,6 +26,33 @@ export const useGetServices = () => {
 
   return {
     services,
+    isLoading,
+    isError
+  };
+};
+
+export const useGetDate = () => {
+  const getDateServices = async (): Promise<
+    ScheduledDates[]
+  > => {
+    const response = await axiosInstance.get(
+      "api/schedule/available"
+    );
+    return response.data;
+  };
+  const {
+    data: schedule,
+    isLoading,
+    isError
+  } = useQuery({
+    queryKey: ["getDateServices"],
+    queryFn: getDateServices,
+    gcTime: 60 * 60 * 24,
+    staleTime: 60 * 60 * 24
+  });
+
+  return {
+    schedule,
     isLoading,
     isError
   };
