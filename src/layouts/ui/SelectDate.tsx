@@ -2,21 +2,15 @@ import { TimeService } from "@/components";
 import { Days } from "@/components/ui/days";
 import type { SelectDateProps } from "@/types/interfaces";
 import { ArrowLeftIcon } from "lucide-react";
-import { useState } from "react";
 
 export const SelectDate = ({
   dates,
   handleBackStep,
   handleSeletedTimeId,
-  selectedTimeId
+  selectedTimeId,
+  handleSetSelectedDayId,
+  selectDateId
 }: SelectDateProps) => {
-  const [select, setSelected] = useState<string | null>(
-    null
-  );
-
-  const handleSelectDate = (value: string) => {
-    setSelected(value);
-  };
   return (
     <div className="py-4">
       <div className="w-full flex flex-row items">
@@ -36,15 +30,15 @@ export const SelectDate = ({
         <div className="flex flex-row gap-1 overflow-x-auto  no-scrollbar  mt-5 touch-pan-x scrollbar-none [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
           <Days
             dates={dates}
-            selectedId={select}
-            handleSelectDate={handleSelectDate}
+            selectedId={selectDateId}
+            handleSelectDate={handleSetSelectedDayId}
           />
         </div>
       </div>
-      {select && (
+      {selectDateId && (
         <TimeService
           dates={dates}
-          selectedId={select}
+          selectedId={selectDateId}
           selectedTimeId={selectedTimeId}
           onSelectTimeId={handleSeletedTimeId}
         />

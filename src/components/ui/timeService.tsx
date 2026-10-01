@@ -25,12 +25,14 @@ export const TimeService = ({
             key={elem.id}
             className={cn(
               "flex flex-col justify-between p-2 border rounded-xl border-textsecond/20 bg-white hover:cursor-pointer transition-all min-w-25",
-              selectedTimeId === elem.id
+              selectedTimeId === elem.time
                 ? "bg-textsecond text-white"
                 : ""
             )}
-            aria-selected={elem.id === selectedTimeId}
-            onClick={() => onSelectTimeId(elem.id)}
+            aria-selected={elem.time === selectedTimeId}
+            onClick={() =>
+              onSelectTimeId(elem.time, elem.id)
+            }
           >
             <span>{elem.time}</span>
           </button>

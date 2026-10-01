@@ -6,7 +6,9 @@ import { CheckIcon } from "lucide-react";
 interface SelectServicesProps {
   handleSetSelectedId: (
     value: number,
-    price: number
+    price: number,
+    serviceName: string,
+    duration: number
   ) => void;
   selectedId: number | null;
 }
@@ -38,7 +40,12 @@ export const SelectService = ({
                 id={"service-" + elem.id}
                 key={elem.id}
                 onClick={() =>
-                  handleSetSelectedId(elem.id, elem.price)
+                  handleSetSelectedId(
+                    elem.id,
+                    elem.price,
+                    elem.title,
+                    elem.duration_minutes
+                  )
                 }
                 className={cn(
                   "flex flex-row items-center gap-3 border-[0.5px] border-textsecond/10 w-full bg-white p-3",

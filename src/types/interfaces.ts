@@ -42,8 +42,10 @@ export type FilteredScheduledDates = {
 export interface SelectDateProps {
   dates: FilteredScheduledDates[] | undefined;
   handleBackStep: () => void;
-  handleSeletedTimeId: (value: number) => void;
-  selectedTimeId: number | null;
+  handleSeletedTimeId: (value: string, id: number) => void;
+  selectedTimeId: string | null;
+  selectDateId: string | null;
+  handleSetSelectedDayId: (value: string) => void;
 }
 export type Date = {
   date: string;
@@ -56,7 +58,39 @@ export interface DaysProps {
 }
 export interface TimeServiceProps {
   selectedId: string | null;
-  selectedTimeId: number | null;
-  onSelectTimeId: (value: number) => void;
+  selectedTimeId: string | null;
+  onSelectTimeId: (value: string, id: number) => void;
   dates: FilteredScheduledDates[] | undefined;
+}
+export interface ConfirmAppointmentProps {
+  handleBackStep: () => void;
+  duration: number | null;
+  selectedService: string | null;
+  selectedDayId: string | null;
+  selectedTimeId: string | null;
+  price: number | null;
+  serviceId: number | null;
+  slotId: number | null;
+  setStep: () => void;
+}
+
+export interface NofiticationProps {
+  className?: string;
+  title: string;
+  description: string;
+  isError?: boolean;
+}
+export interface MyAppointmentsResponse {
+  id: number;
+  service: Services;
+  slot: ScheduledDates;
+  status: "BOOKED";
+}
+
+export interface ClientAppointmentsProps {
+  appointments: MyAppointmentsResponse[] | undefined;
+  isLoading: boolean;
+}
+export interface UpcommingAppointmentProsp {
+  appointment: MyAppointmentsResponse;
 }

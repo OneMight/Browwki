@@ -1,4 +1,5 @@
 import type {
+  MyAppointmentsResponse,
   ScheduledDates,
   Services
 } from "@/types/interfaces";
@@ -20,8 +21,8 @@ export const useGetServices = () => {
     queryKey: ["getServices"],
     queryFn: getServices,
     retry: 0,
-    staleTime: 60 * 60,
-    gcTime: 60 * 60
+    staleTime: 1000 * 60 * 60,
+    gcTime: 1000 * 60 * 60
   });
 
   return {
@@ -47,12 +48,53 @@ export const useGetDate = () => {
   } = useQuery({
     queryKey: ["getDateServices"],
     queryFn: getDateServices,
-    gcTime: 60 * 60 * 24,
-    staleTime: 60 * 60 * 24
+    staleTime: 0,
+    gcTime: 0
   });
 
   return {
     schedule,
+    isLoading,
+    isError
+  };
+};
+
+export const bookAppointment = async (
+  service_id: number,
+  slot_id: number
+) => {
+  const response = await axiosInstance.post(
+    "/api/appointments",
+    {
+      service_id: service_id,
+      slot_id: slot_id
+    }
+  );
+  return response.data;
+};
+export const useGetMyAppointment = () => {
+  const fetchMyAppointment = async (): Promise<
+    MyAppointmentsResponse[]
+  > => {
+    const response = await axiosInstance.get(
+      "/api/clients/appointments/upcoming"
+    );
+    return response.data;
+  };
+
+  const {
+    data: appointments,
+    isLoading,
+    isError
+  } = useQuery({
+    queryKey: ["fetchMyAppointment"],
+    queryFn: fetchMyAppointment,
+    staleTime: 1000 * 60 * 60,
+    gcTime: 1000 * 60 * 60
+  });
+
+  return {
+    appointments,
     isLoading,
     isError
   };

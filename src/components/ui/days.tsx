@@ -20,17 +20,20 @@ export const Days = ({
   );
 
   const today = todayKey();
-  const getAvailableCount = (dateKey: string) => {
-    if (!dates || !Array.isArray(dates)) return 0;
+  const getAvailableCount = useMemo(
+    () => (dateKey: string) => {
+      if (!dates || !Array.isArray(dates)) return 0;
 
-    return dates.filter((slot) => {
-      const slotDate =
-        slot.date ||
-        (slot.date ? formatDate(slot.date, "dd.MM") : "");
+      return dates.filter((slot) => {
+        const slotDate =
+          slot.date ||
+          (slot.date ? formatDate(slot.date, "dd.MM") : "");
 
-      return slotDate === dateKey && slot.isAvailable;
-    }).length;
-  };
+        return slotDate === dateKey && slot.isAvailable;
+      }).length;
+    },
+    [dates]
+  );
   return (
     <>
       {selectDateArray.map((i) => {
