@@ -157,11 +157,6 @@
     if (eventData === undefined) {
       eventData = "";
     }
-    console.log(
-      "[Telegram.WebView] > postEvent",
-      eventType,
-      eventData
-    );
 
     if (window.TelegramWebviewProxy !== undefined) {
       TelegramWebviewProxy.postEvent(
@@ -201,16 +196,7 @@
     }
   }
 
-  function receiveEvent(eventType, eventData) {
-    console.log(
-      "[Telegram.WebView] < receiveEvent",
-      eventType,
-      eventData
-    );
-    callEventCallbacks(eventType, function (callback) {
-      callback(eventType, eventData);
-    });
-  }
+  function receiveEvent(eventType, eventData) {}
 
   function callEventCallbacks(eventType, func) {
     var curEventHandlers = eventHandlers[eventType];

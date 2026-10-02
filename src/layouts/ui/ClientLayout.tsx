@@ -5,7 +5,6 @@ import { ClientAppointments } from "./ClientAppointments";
 
 export const ClientLayout = () => {
   const { appointments, isLoading } = useGetMyAppointment();
-  console.log(appointments);
   return (
     <Tabs.Tabs
       className={"w-full flex flex-col items-center gap-5"}
@@ -21,11 +20,12 @@ export const ClientLayout = () => {
               <Spinner className="size-2" />
             ) : (
               <>
-                {appointments && (
-                  <span className="border bg-textsecond/70 text-secondbg rounded-full px-1.5 pb-0.5">
-                    {appointments.length}
-                  </span>
-                )}
+                {appointments?.length !== 0 &&
+                  appointments && (
+                    <span className="border bg-textsecond/70 text-secondbg rounded-full px-1.5 pb-0.5">
+                      {appointments.length}
+                    </span>
+                  )}
               </>
             )}
           </div>
