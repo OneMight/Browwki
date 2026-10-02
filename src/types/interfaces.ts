@@ -1,11 +1,12 @@
-export interface User {
+export type User = {
   id: bigint;
   first_name: string;
   last_name: string;
   username: string;
   role: UserRole;
   photo_url: string;
-}
+};
+export type Client = Pick<User, "first_name" | "username">;
 export interface UserData {
   isError: boolean;
   isLoading: boolean;
@@ -80,8 +81,10 @@ export interface NofiticationProps {
   description: string;
   isError?: boolean;
 }
+
 export interface MyAppointmentsResponse {
   id: number;
+  client: Client;
   service: Services;
   slot: ScheduledDates;
   status: "BOOKED";
@@ -91,6 +94,12 @@ export interface ClientAppointmentsProps {
   appointments: MyAppointmentsResponse[] | undefined;
   isLoading: boolean;
 }
-export interface UpcommingAppointmentProsp {
+export type UpcommingAppointmentProsp = {
   appointment: MyAppointmentsResponse;
-}
+};
+export type Optional<T> = T | undefined;
+export type NextAppointmentProps = {
+  appointment: Optional<
+    UpcommingAppointmentProsp["appointment"]
+  >;
+};

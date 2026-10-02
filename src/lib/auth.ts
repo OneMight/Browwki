@@ -1,12 +1,11 @@
-import type {
-  AuthResponse,
-  User,
-  UserRole
-} from "@/types/interfaces";
+import type { User, UserRole } from "@/types/interfaces";
 
-export const handleAuthSuccess = (data: AuthResponse) => {
-  localStorage.setItem("access_token", data.access_token);
-  localStorage.setItem("user_role", data.role);
+export const handleAuthSuccess = (
+  token: string,
+  role: UserRole
+) => {
+  localStorage.setItem("access_token", token);
+  localStorage.setItem("user_role", role);
 };
 
 export const getDataAboutUser = (): User => {

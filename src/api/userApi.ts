@@ -1,9 +1,9 @@
-import type { UserData } from "@/types/interfaces";
+import type { AuthResponse } from "@/types/interfaces";
 import { axiosInstance } from ".";
 import { useQuery } from "@tanstack/react-query";
 
 export const useLoginUser = (init_data: string) => {
-  const LoginUser = async (): Promise<UserData> => {
+  const LoginUser = async (): Promise<AuthResponse> => {
     const response = await axiosInstance.post(
       "/api/auth/telegram",
       { init_data }

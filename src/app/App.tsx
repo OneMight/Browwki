@@ -6,15 +6,18 @@ import {
   handleAuthSuccess
 } from "@/lib/auth";
 import { useEffect } from "react";
-import { ClientLayout } from "@/layouts";
+import { AdminLayout, ClientLayout } from "@/layouts";
 function App() {
   const tg = window.Telegram?.WebApp;
   const init_data = tg?.initData;
   const { isLoading, isError, userData } =
     useLoginUser(init_data);
   useEffect(() => {
-    if (userData?.userData) {
-      handleAuthSuccess(userData.userData);
+    if (userData?.access_token) {
+      handleAuthSuccess(
+        userData.access_token,
+        userData.role
+      );
     }
   }, [userData]);
 
@@ -29,8 +32,8 @@ function App() {
   return (
     <main className="flex w-full p-5 min-h-screen max-w-120 flex-col gap-3 ">
       <Header />
-      {user.role !== "ADMIN" ? (
-        <div></div>
+      {user.role == "ADMIN" ? (
+        <AdminLayout />
       ) : (
         <ClientLayout />
       )}
