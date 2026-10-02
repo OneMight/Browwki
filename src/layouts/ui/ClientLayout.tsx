@@ -5,7 +5,6 @@ import { ClientAppointments } from "./ClientAppointments";
 
 export const ClientLayout = () => {
   const { appointments, isLoading } = useGetMyAppointment();
-  console.log(appointments);
   return (
     <Tabs.Tabs
       className={"w-full flex flex-col items-center gap-5"}

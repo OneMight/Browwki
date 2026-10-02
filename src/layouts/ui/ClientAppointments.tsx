@@ -1,10 +1,20 @@
-import { UpcommingAppointment } from "@/components";
+import {
+  Spinner,
+  UpcommingAppointment
+} from "@/components";
 import type { ClientAppointmentsProps } from "@/types/interfaces";
 
 export const ClientAppointments = ({
   appointments,
   isLoading
 }: ClientAppointmentsProps) => {
+  if (isLoading) {
+    return (
+      <div className="flex flex-col items-center justify-center min-h-130">
+        <Spinner className="size-10" />;
+      </div>
+    );
+  }
   return (
     <div className="flex flex-col gap-7">
       {appointments?.length !== 0 ? (
