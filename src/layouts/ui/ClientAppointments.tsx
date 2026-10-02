@@ -7,14 +7,24 @@ export const ClientAppointments = ({
 }: ClientAppointmentsProps) => {
   return (
     <div className="flex flex-col gap-7">
-      <span className="text-2xl">Предстоящие</span>
-      {appointments &&
-        appointments.map((elem) => (
-          <UpcommingAppointment
-            appointment={elem}
-            key={elem.id}
-          />
-        ))}
+      {appointments?.length !== 0 ? (
+        <>
+          <span className="text-2xl">Предстоящие</span>
+          {appointments &&
+            appointments.map((elem) => (
+              <UpcommingAppointment
+                appointment={elem}
+                key={elem.id}
+              />
+            ))}
+        </>
+      ) : (
+        <div className="flex flex-col items-center justify-center min-h-130">
+          <span className="text-xl text-black/60">
+            У вас нет записей
+          </span>
+        </div>
+      )}
     </div>
   );
 };

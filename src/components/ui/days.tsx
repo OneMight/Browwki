@@ -3,7 +3,7 @@ import {
   formatDate,
   offsetKey,
   todayKey,
-  toKeyMonth
+  toKeyDay
 } from "@/utils/formatData";
 import { nameCountOfWin } from "@/utils/nameCountOfWin";
 import { cn } from "cn";
@@ -57,7 +57,7 @@ export const Days = ({
                 ? "Сегд"
                 : formatDate(i, "EEEEEE")}
             </span>
-            <span>{toKeyMonth(i)}</span>
+            <span className="text-xl">{toKeyDay(i)}</span>
             <span className="text-[12px]">
               {nameCountOfWin(count)}
             </span>

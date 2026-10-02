@@ -20,10 +20,22 @@ export function toKey(date: Date | string): string {
 export function toKeyMonth(date: Date | string): string {
   return format(date, "dd.MM");
 }
+export function toKeyDay(date: Date | string): string {
+  return format(date, "d");
+}
+export function toKeyMonthnDay(
+  date: Date | string
+): string {
+  return format(date, "d MMM", { locale: ru });
+}
+export function toKeyFullMonth(
+  date: Date | string
+): string {
+  return format(date, "dd MMMM", { locale: ru });
+}
 export function fromKey(key: string): Date {
   return parseISO(key);
 }
-
 export function todayKey(): string {
   return toKey(new Date());
 }

@@ -3,19 +3,31 @@ import { telegramLink } from "@/utils/format";
 import {
   formatAllDate,
   formatDuration,
-  toKeyMonth
+  toKeyFullMonth,
+  toKeyMonthnDay
 } from "@/utils/formatData";
 import { BellIcon, MessageCircleIcon } from "lucide-react";
-
+import { motion } from "framer-motion";
 export const UpcommingAppointment = ({
   appointment
 }: UpcommingAppointmentProsp) => {
   return (
-    <div className="flex flex-col gap-5 bg-white p-5 border border-textsecond/20 rounded-2xl">
-      <div className="flex flex-row w-full gap-3">
-        <div className="flex p-4 bg-secondbg rounded-2xl max-h-15">
-          <span className="text-textsecond">
-            {toKeyMonth(appointment.slot.datetime_start)}
+    <motion.div
+      initial={{ opacity: 0, x: 16 }}
+      animate={{ opacity: 1, x: 0 }}
+      exit={{ opacity: 0, x: -16 }}
+      transition={{
+        duration: 0.2,
+        ease: [0.23, 1, 0.32, 1]
+      }}
+      className="flex flex-col gap-5 bg-white p-5 border border-textsecond/20 rounded-2xl"
+    >
+      <div className="flex flex-row w-full gap-3 ">
+        <div className="flex px-3 py-1 items-center justify-center bg-secondbg min-h-17 min-w-17 rounded-2xl max-h-15">
+          <span className="text-textsecond text-xl w-10 text-center">
+            {toKeyMonthnDay(
+              appointment.slot.datetime_start
+            )}
           </span>
         </div>
         <div className="flex flex-col gap-1">
@@ -40,7 +52,8 @@ export const UpcommingAppointment = ({
         <BellIcon className="size-4" />{" "}
         <span>
           Напоминание придет{" "}
-          {toKeyMonth(appointment.slot.datetime_start)}
+          {toKeyFullMonth(appointment.slot.datetime_start)}{" "}
+          в 9:00
         </span>
       </div>
       <a
@@ -49,6 +62,6 @@ export const UpcommingAppointment = ({
       >
         <MessageCircleIcon /> Мастеру
       </a>
-    </div>
+    </motion.div>
   );
 };
