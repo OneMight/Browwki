@@ -1,3 +1,5 @@
+import type { ReactNode } from "react";
+
 export type User = {
   id: bigint;
   first_name: string;
@@ -103,3 +105,12 @@ export type NextAppointmentProps = {
     UpcommingAppointmentProsp["appointment"]
   >;
 };
+export type LinkNavBarProps = {
+  icon: ReactNode;
+  title: string;
+  route: string;
+};
+export interface CreateSlotsProps {
+  selectedId: string | null;
+  dates: FilteredScheduledDates[] | undefined;
+}

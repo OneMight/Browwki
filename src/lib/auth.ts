@@ -1,4 +1,7 @@
-import type { User, UserRole } from "@/types/interfaces";
+import type {
+  User,
+  UserRole
+} from "@/shared/types/interfaces";
 
 export const handleAuthSuccess = (
   token: string,

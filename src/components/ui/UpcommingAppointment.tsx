@@ -1,4 +1,4 @@
-import type { UpcommingAppointmentProsp } from "@/types/interfaces";
+import type { UpcommingAppointmentProsp } from "@/shared/types/interfaces";
 import { telegramLink } from "@/utils/format";
 import {
   formatAllDate,

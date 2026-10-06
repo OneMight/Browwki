@@ -1,4 +1,4 @@
-import type { NextAppointmentProps } from "@/types/interfaces";
+import type { NextAppointmentProps } from "@/shared/types/interfaces";
 import { telegramLink } from "@/utils/format";
 import {
   formatDate,
@@ -6,7 +6,7 @@ import {
   todayKey,
   toKey
 } from "@/utils/formatData";
-import { MessageCircleIcon, Send } from "lucide-react";
+import { Send } from "lucide-react";
 
 export const NextAppointment = ({
   appointment

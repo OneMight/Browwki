@@ -1,4 +1,4 @@
-import type { TimeServiceProps } from "@/types/interfaces";
+import type { TimeServiceProps } from "@/shared/types/interfaces";
 import { formatAllDate } from "@/utils/formatData";
 import { cn } from "cn";
 import { useMemo } from "react";

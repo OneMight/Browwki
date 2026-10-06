@@ -3,6 +3,8 @@ import { Spinner } from "./ui/spinner";
 import { TimeService } from "./ui/timeService";
 import { Notification } from "./ui/Notification";
 import { UpcommingAppointment } from "./ui/UpcommingAppointment";
+import { AdminDays } from "./ui/AdminDays";
+import { Switch } from "./ui/Switch";
 import { NextAppointment } from "./ui/NextAppointment";
 export {
   Header,
@@ -10,7 +12,9 @@ export {
   TimeService,
   Notification,
   UpcommingAppointment,
-  NextAppointment
+  NextAppointment,
+  AdminDays,
+  Switch
 };
 export * as Alert from "./ui/Alert";
 export * as Tabs from "./ui/tabs";

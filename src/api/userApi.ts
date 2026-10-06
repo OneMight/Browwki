@@ -1,4 +1,4 @@
-import type { AuthResponse } from "@/types/interfaces";
+import type { AuthResponse } from "@/shared/types/interfaces";
 import { axiosInstance } from ".";
 import { useQuery } from "@tanstack/react-query";
 

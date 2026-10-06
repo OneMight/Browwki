@@ -1,4 +1,4 @@
-import type { DaysProps } from "@/types/interfaces";
+import type { DaysProps } from "@/shared/types/interfaces";
 import {
   formatDate,
   offsetKey,

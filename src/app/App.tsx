@@ -1,12 +1,13 @@
 import { useLoginUser } from "@/api/userApi";
 import "./App.css";
-import { Header, Spinner } from "@/components";
+import { Spinner } from "@/components";
 import {
   getDataAboutUser,
   handleAuthSuccess
 } from "@/lib/auth";
 import { useEffect } from "react";
-import { AdminLayout, ClientLayout } from "@/layouts";
+import { Outlet } from "@tanstack/react-router";
+import { AdminNavBar } from "@/layouts/ui/AdminNavBar";
 function App() {
   const tg = window.Telegram?.WebApp;
   const init_data = tg?.initData;
@@ -30,13 +31,9 @@ function App() {
     );
   }
   return (
-    <main className="flex w-full p-5 min-h-screen max-w-120 flex-col gap-3 ">
-      <Header />
-      {user.role == "ADMIN" ? (
-        <AdminLayout />
-      ) : (
-        <ClientLayout />
-      )}
+    <main className="flex w-full p-5 pb-0 min-h-screen max-w-120 flex-col gap-3 ">
+      <Outlet />
+      {user.role === "ADMIN" && <AdminNavBar />}
     </main>
   );
 }

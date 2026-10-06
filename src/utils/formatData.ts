@@ -73,3 +73,11 @@ export function formatDate(
     typeof value === "string" ? parseISO(value) : value;
   return format(date, pattern, { locale: ru });
 }
+export const formatTimeToISO = (
+  date: string | null,
+  time: string
+) => {
+  const fulltime = `${date}T${time}:00.000Z`;
+  const dataObj = new Date(fulltime);
+  return dataObj.toISOString();
+};

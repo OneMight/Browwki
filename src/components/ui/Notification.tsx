@@ -1,7 +1,7 @@
 import { CheckCircle2Icon } from "lucide-react";
 import { Alert } from "..";
 import { cn } from "cn";
-import type { NofiticationProps } from "@/types/interfaces";
+import type { NofiticationProps } from "@/shared/types/interfaces";
 
 export const Notification = ({
   className,

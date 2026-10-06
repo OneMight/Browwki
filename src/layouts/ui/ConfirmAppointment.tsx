@@ -1,6 +1,6 @@
 import { bookAppointment } from "@/api/servicesApi";
 import { Notification, Spinner } from "@/components";
-import type { ConfirmAppointmentProps } from "@/types/interfaces";
+import type { ConfirmAppointmentProps } from "@/shared/types/interfaces";
 import {
   formatAllDate,
   formatDuration
@@ -76,6 +76,7 @@ export const ConfirmAppointment = ({
   const handleBookAppointment = () => {
     mutate();
   };
+
   return (
     <div className="flex flex-col">
       {notification && (

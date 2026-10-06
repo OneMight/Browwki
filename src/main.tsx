@@ -1,13 +1,13 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "@/app/index.css";
-import App from "@/app/App.tsx";
 import { ProviderQuery } from "@/app/providers/ProviderQuery";
+import { ProviderRouter } from "./app/providers/RouterProvider";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <ProviderQuery>
-      <App />
+      <ProviderRouter />
     </ProviderQuery>
   </StrictMode>
 );

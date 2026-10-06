@@ -30,7 +30,7 @@ export const AdminLayout = () => {
               appointment={appointments?.[0]}
             />
           ) : (
-            <div className="flex justify-center items-center w-full min-h-130">
+            <div className="flex justify-center items-center w-full min-h-125">
               <span className="text-xl text-black/60">
                 У вас нет записей
               </span>

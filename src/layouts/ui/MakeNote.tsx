@@ -84,7 +84,7 @@ export const MakeNote = () => {
     setPrice(null);
   };
   return (
-    <div className="flex flex-col gap-4 mb-4 pb-10">
+    <div className="flex flex-col gap-4  ">
       {step == 0 && (
         <div className="flex flex-col items-start gap-2">
           <img

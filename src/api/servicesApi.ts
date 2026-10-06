@@ -2,7 +2,7 @@ import type {
   MyAppointmentsResponse,
   ScheduledDates,
   Services
-} from "@/types/interfaces";
+} from "@/shared/types/interfaces";
 import { axiosInstance } from ".";
 import { useQuery } from "@tanstack/react-query";
 

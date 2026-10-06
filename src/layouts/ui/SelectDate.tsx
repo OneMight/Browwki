@@ -1,6 +1,6 @@
 import { TimeService } from "@/components";
 import { Days } from "@/components/ui/days";
-import type { SelectDateProps } from "@/types/interfaces";
+import type { SelectDateProps } from "@/shared/types/interfaces";
 import { ArrowLeftIcon } from "lucide-react";
 
 export const SelectDate = ({

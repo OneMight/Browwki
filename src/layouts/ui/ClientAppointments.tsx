@@ -2,7 +2,7 @@ import {
   Spinner,
   UpcommingAppointment
 } from "@/components";
-import type { ClientAppointmentsProps } from "@/types/interfaces";
+import type { ClientAppointmentsProps } from "@/shared/types/interfaces";
 
 export const ClientAppointments = ({
   appointments,
