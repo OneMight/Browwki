@@ -50,11 +50,20 @@ const slotsRouter = createRoute({
     }))
   )
 });
-
+const serviceRouter = createRoute({
+  getParentRoute: () => rootRouter,
+  path: ROUTES.SERVICES,
+  component: React.lazy(() =>
+    import("@/pages/ServicePage").then((module) => ({
+      default: module.ServicePage
+    }))
+  )
+});
 export {
   indexRouter,
   rootRouter,
   adminRouter,
   slotsRouter,
-  clientRoute
+  clientRoute,
+  serviceRouter
 };

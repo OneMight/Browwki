@@ -2,7 +2,8 @@ import { useQuery } from "@tanstack/react-query";
 import { axiosInstance } from ".";
 import type {
   MyAppointmentsResponse,
-  ScheduledDates
+  ScheduledDates,
+  Services
 } from "@/shared/types/interfaces";
 
 export const useGetAppointments = () => {
@@ -72,4 +73,37 @@ export const useGetAllDates = () => {
     isLoading,
     isError
   };
+};
+export const deleteService = async (id: number) => {
+  const response = await axiosInstance.delete(
+    `/api/admin/services/delete/${id}`
+  );
+  return response.data;
+};
+export const updateService = async (
+  serviceData: Services
+) => {
+  const response = await axiosInstance.put(
+    `api/admin/services/${serviceData.id}`,
+    {
+      ...serviceData
+    }
+  );
+  return response.data;
+};
+
+export const addServiceQuery = async (
+  serviceData: Services
+) => {
+  const response = await axiosInstance.post(
+    "api/admin/services",
+    {
+      title: serviceData.title,
+      description: serviceData.description,
+      price: serviceData.price,
+      duration_minutes: serviceData.duration_minutes,
+      is_available: true
+    }
+  );
+  return response.data;
 };

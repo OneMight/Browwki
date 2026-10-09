@@ -28,7 +28,7 @@ export interface Services {
   title: string;
   description: string;
   duration_minutes: number;
-  is_active: boolean;
+  is_active?: boolean;
   price: number;
 }
 export type ScheduledDates = {
@@ -114,3 +114,15 @@ export interface CreateSlotsProps {
   selectedId: string | null;
   dates: FilteredScheduledDates[] | undefined;
 }
+
+export interface LabelnInputProps {
+  label: string;
+  lastValue?: string | number;
+  type?: string;
+  onChange?: (value: string | number) => void;
+}
+
+export type ServiceCompPros = Optional<Services> & {
+  serviceLength: number;
+  idElem: number;
+};
