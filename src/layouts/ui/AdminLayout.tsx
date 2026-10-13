@@ -1,5 +1,9 @@
 import { useGetAppointments } from "@/api/adminApi";
-import { NextAppointment, Spinner } from "@/components";
+import {
+  NextAppointment,
+  Spinner,
+  UpcomingAppoint
+} from "@/components";
 import { getDataAboutUser } from "@/lib/auth";
 import {
   formatAllDate,
@@ -9,8 +13,12 @@ import {
 export const AdminLayout = () => {
   const user = getDataAboutUser();
   const { appointments, isLoading } = useGetAppointments();
+  const filteredAppointments = appointments?.filter(
+    (elem) => elem.status === "BOOKED"
+  );
+
   return (
-    <div className="flex flex-col items-start justify-start">
+    <div className="flex flex-col items-start justify-start min-h-140">
       <div className="flex flex-col gap-1">
         <span className="text-black/60">
           {formatAllDate(todayKey())}
@@ -25,14 +33,34 @@ export const AdminLayout = () => {
         </div>
       ) : (
         <>
-          {appointments?.length !== 0 ? (
-            <NextAppointment
-              appointment={appointments?.[0]}
-            />
+          {filteredAppointments &&
+          filteredAppointments?.length !== 0 ? (
+            <div className="flex flex-col gap-5 w-full ">
+              <NextAppointment
+                appointment={filteredAppointments[0]}
+              />
+              {filteredAppointments.length > 1 && (
+                <div className="flex flex-col gap-3">
+                  <span className="font-bold text-2xl">
+                    Ближайшие записи
+                  </span>
+                  <div>
+                    {filteredAppointments.map((elem, i) => (
+                      <UpcomingAppoint
+                        appointment={elem}
+                        index={i}
+                        length={filteredAppointments.length}
+                        key={i}
+                      />
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
           ) : (
             <div className="flex justify-center items-center w-full min-h-125">
               <span className="text-xl text-black/60">
-                У вас нет записей
+                У Вас нет записей
               </span>
             </div>
           )}

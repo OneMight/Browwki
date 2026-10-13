@@ -107,3 +107,19 @@ export const addServiceQuery = async (
   );
   return response.data;
 };
+
+export const updAppointmentStatus = async (id: number) => {
+  const response = await axiosInstance.put(
+    `api/admin/appointments/${id}/status/done`
+  );
+  return response.data;
+};
+
+export const CancelAppointmentStatus = async (
+  id: number
+) => {
+  const response = await axiosInstance.post(
+    `api/admin/appointments/${id}/cancel`
+  );
+  return response.data;
+};

@@ -52,7 +52,7 @@ export const ConfirmAppointment = ({
     },
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: ["getDateServices", "fetchMyAppointment"]
+        queryKey: ["getDateServices"]
       });
       queryClient.invalidateQueries({
         queryKey: ["fetchMyAppointment"]

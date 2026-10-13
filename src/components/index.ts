@@ -9,6 +9,7 @@ import { Switch } from "./ui/Switch";
 import { NextAppointment } from "./ui/NextAppointment";
 import { LabelnInput } from "./ui/LabelnInput";
 import { ServiceAdd } from "./ui/ServiceAdd";
+import { UpcomingAppoint } from "./ui/UpcomingAppoint";
 export {
   Header,
   Spinner,
@@ -20,7 +21,8 @@ export {
   Switch,
   ServiceComp,
   LabelnInput,
-  ServiceAdd
+  ServiceAdd,
+  UpcomingAppoint
 };
 export * as Alert from "./ui/Alert";
 export * as Tabs from "./ui/tabs";

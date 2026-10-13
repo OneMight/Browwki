@@ -89,8 +89,12 @@ export interface MyAppointmentsResponse {
   client: Client;
   service: Services;
   slot: ScheduledDates;
-  status: "BOOKED";
+  status: Status;
 }
+export type Status =
+  | "BOOKED"
+  | "COMPLETED"
+  | "CANCELLED_BY_ADMIN";
 
 export interface ClientAppointmentsProps {
   appointments: MyAppointmentsResponse[] | undefined;
@@ -126,3 +130,9 @@ export type ServiceCompPros = Optional<Services> & {
   serviceLength: number;
   idElem: number;
 };
+
+export interface UpcomingAppointProps {
+  appointment: MyAppointmentsResponse;
+  index: number;
+  length: number;
+}
