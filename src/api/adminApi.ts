@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { axiosInstance } from ".";
 import type {
+  AppointmentsPerMonthResponse,
   MyAppointmentsResponse,
   ScheduledDates,
   Services
@@ -122,4 +123,32 @@ export const CancelAppointmentStatus = async (
     `api/admin/appointments/${id}/cancel`
   );
   return response.data;
+};
+export const useGetAppointmentsPerMonth = (
+  month: string | null
+) => {
+  const getAppointmentsPerMonth =
+    async (): Promise<AppointmentsPerMonthResponse> => {
+      const response = await axiosInstance.get(
+        `api/admin/schedule/slots/${month}`
+      );
+      return response.data;
+    };
+  const {
+    data: appointmentsPerMonth,
+    isLoading,
+    isError
+  } = useQuery({
+    queryKey: ["appointmentsPerMonth", month],
+    queryFn: getAppointmentsPerMonth,
+    enabled: !!month,
+    gcTime: 0,
+    staleTime: 0
+  });
+
+  return {
+    appointmentsPerMonth,
+    isLoading,
+    isError
+  };
 };

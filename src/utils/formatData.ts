@@ -17,6 +17,9 @@ export function formatDuration(minutes: number): string {
 export function toKey(date: Date | string): string {
   return format(date, "yyyy-MM-dd");
 }
+export function getMonth(date: Date): string {
+  return format(date, "yyyy-MM");
+}
 export function toKeyMonth(date: Date | string): string {
   return format(date, "dd.MM");
 }
@@ -41,6 +44,9 @@ export function todayKey(): string {
 }
 export function weekdayOf(key: string): number {
   return getDay(fromKey(key));
+}
+export function mounthDayOf(key: string): number {
+  return Number(key.split("-")[2]);
 }
 export function offsetKey(days: number): string {
   return toKey(addDays(startOfDay(new Date()), days));

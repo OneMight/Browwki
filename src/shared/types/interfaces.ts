@@ -135,4 +135,22 @@ export interface UpcomingAppointProps {
   appointment: MyAppointmentsResponse;
   index: number;
   length: number;
+  calendar?: boolean;
 }
+
+export type ScheduleSlotResponse = ScheduledDates & {
+  appointment: AppointmentShort | null;
+};
+export type AppointmentShort = {
+  client: Pick<Client, "first_name"> &
+    Pick<Client, "username">;
+} & {
+  id: number;
+  status: Status;
+  service: Services;
+  slot: ScheduledDates;
+};
+export type AppointmentsPerMonthResponse = Record<
+  string,
+  ScheduleSlotResponse[]
+>;

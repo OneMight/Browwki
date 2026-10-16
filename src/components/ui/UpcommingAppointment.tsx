@@ -3,6 +3,7 @@ import { telegramLink } from "@/utils/format";
 import {
   formatAllDate,
   formatDuration,
+  getTime,
   toKeyFullMonth,
   toKeyMonthnDay
 } from "@/utils/formatData";
@@ -23,13 +24,19 @@ export const UpcommingAppointment = ({
       className="flex flex-col gap-5 bg-white p-5 border border-textsecond/20 rounded-2xl"
     >
       <div className="flex flex-row w-full gap-3 ">
-        <div className="flex px-3 py-1 items-center justify-center bg-secondbg min-h-17 min-w-17 rounded-2xl max-h-15">
-          <span className="text-textsecond text-xl w-10 text-center">
-            {toKeyMonthnDay(
-              appointment.slot.datetime_start
-            )}
+        <div className="flex flex-col items-center gap-3">
+          <div className="flex px-3 py-1 items-center justify-center bg-secondbg min-h-17 min-w-17 rounded-2xl max-h-15">
+            <span className="text-textsecond text-xl w-10 text-center">
+              {toKeyMonthnDay(
+                appointment.slot.datetime_start
+              )}
+            </span>
+          </div>
+          <span className="flex px-3 py-1 items-center justify-center text-textsecond bg-secondbg min-h-17 min-w-17 rounded-2xl max-h-15 text-[16px] font-bold">
+            {getTime(appointment.slot.datetime_start)}
           </span>
         </div>
+
         <div className="flex flex-col gap-1">
           <span className="font-bold text-xl">
             {appointment.service.title}

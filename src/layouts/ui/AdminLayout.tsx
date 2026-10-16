@@ -16,7 +16,8 @@ export const AdminLayout = () => {
   const filteredAppointments = appointments?.filter(
     (elem) => elem.status === "BOOKED"
   );
-
+  const splitesAppointments =
+    filteredAppointments?.slice(1);
   return (
     <div className="flex flex-col items-start justify-start min-h-140">
       <div className="flex flex-col gap-1">
@@ -34,28 +35,27 @@ export const AdminLayout = () => {
       ) : (
         <>
           {filteredAppointments &&
+          splitesAppointments &&
           filteredAppointments?.length !== 0 ? (
             <div className="flex flex-col gap-5 w-full ">
               <NextAppointment
                 appointment={filteredAppointments[0]}
               />
-              {filteredAppointments.length > 1 && (
-                <div className="flex flex-col gap-3">
-                  <span className="font-bold text-2xl">
-                    Ближайшие записи
-                  </span>
-                  <div>
-                    {filteredAppointments.map((elem, i) => (
-                      <UpcomingAppoint
-                        appointment={elem}
-                        index={i}
-                        length={filteredAppointments.length}
-                        key={i}
-                      />
-                    ))}
-                  </div>
+              <div className="flex flex-col gap-3">
+                <span className="font-bold text-2xl">
+                  Ближайшие записи
+                </span>
+                <div>
+                  {splitesAppointments.map((elem, i) => (
+                    <UpcomingAppoint
+                      appointment={elem}
+                      index={i}
+                      length={splitesAppointments.length}
+                      key={i}
+                    />
+                  ))}
                 </div>
-              )}
+              </div>
             </div>
           ) : (
             <div className="flex justify-center items-center w-full min-h-125">

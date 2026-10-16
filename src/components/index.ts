@@ -10,6 +10,7 @@ import { NextAppointment } from "./ui/NextAppointment";
 import { LabelnInput } from "./ui/LabelnInput";
 import { ServiceAdd } from "./ui/ServiceAdd";
 import { UpcomingAppoint } from "./ui/UpcomingAppoint";
+import { ServerDay } from "./ui/ServerDay";
 export {
   Header,
   Spinner,
@@ -22,7 +23,8 @@ export {
   ServiceComp,
   LabelnInput,
   ServiceAdd,
-  UpcomingAppoint
+  UpcomingAppoint,
+  ServerDay
 };
 export * as Alert from "./ui/Alert";
 export * as Tabs from "./ui/tabs";

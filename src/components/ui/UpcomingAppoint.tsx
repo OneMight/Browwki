@@ -15,22 +15,45 @@ import {
   DrawerTitle,
   DrawerTrigger
 } from "./Drawer";
-import { X } from "lucide-react";
+import { ChevronRightIcon, X } from "lucide-react";
 import { Avatar, AvatarFallback } from "./Avatar";
 import { telegramLink } from "@/utils/format";
 import {
   useMutation,
   useQueryClient
 } from "@tanstack/react-query";
-import { CancelAppointmentStatus } from "@/api/adminApi";
+import {
+  CancelAppointmentStatus,
+  updAppointmentStatus
+} from "@/api/adminApi";
 
 export const UpcomingAppoint = ({
   appointment,
   index,
-  length
+  length,
+  calendar
 }: UpcomingAppointProps) => {
   const queryClient = useQueryClient();
-
+  const { mutate: MutateMakeDone } = useMutation({
+    mutationFn: () => {
+      if (!appointment.id) {
+        throw new Error("Выберите слот");
+      }
+      return updAppointmentStatus(appointment.id);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["getAdminAppointments"]
+      });
+      queryClient.invalidateQueries({
+        queryKey: ["getAllDates"]
+      });
+      calendar &&
+        queryClient.invalidateQueries({
+          queryKey: ["appointmentsPerMonth"]
+        });
+    }
+  });
   const { mutate: MutateCancel } = useMutation({
     mutationFn: () => {
       if (!appointment.id) {
@@ -45,12 +68,18 @@ export const UpcomingAppoint = ({
       queryClient.invalidateQueries({
         queryKey: ["getAllDates"]
       });
+      calendar &&
+        queryClient.invalidateQueries({
+          queryKey: ["appointmentsPerMonth"]
+        });
     }
   });
   const handleCancelStatusBtn = () => {
     MutateCancel();
   };
-
+  const handleMakeDoneBtn = () => {
+    MutateMakeDone();
+  };
   return (
     <Drawer showSwipeHandle swipeDirection="down">
       <DrawerTrigger
@@ -63,23 +92,44 @@ export const UpcomingAppoint = ({
             )}
           >
             <div className="flex flex-col items-center gap-2">
-              <span>
-                {toKeyMonth(
-                  appointment.slot.datetime_start
-                )}
-              </span>
+              {!calendar && (
+                <span>
+                  {toKeyMonth(
+                    appointment.slot.datetime_start
+                  )}
+                </span>
+              )}
               <span className="font-bold">
                 {getTime(appointment.slot.datetime_start)}
               </span>
             </div>
-            <div className="flex flex-col items-start">
-              <span className="font-bold">
-                {appointment.client.first_name} |{" @"}
-                {appointment.client.username}
-              </span>
-              <span className="text-start">
-                {appointment.service.title}
-              </span>
+            <div className="flex flex-row w-full justify-between items-center">
+              <div className="flex flex-col items-start">
+                <span className="font-bold">
+                  {appointment.client.first_name} |{" @"}
+                  {appointment.client.username}
+                </span>
+                <span
+                  className={cn(
+                    "text-start",
+                    calendar ? "text-black/60" : ""
+                  )}
+                >
+                  {appointment.service.title}
+                </span>
+              </div>
+              {appointment.status == "COMPLETED" ? (
+                <span
+                  className="text-[12px] bg-textsecond/20
+                 p-2 rounded-2xl"
+                >
+                  Выполнена
+                </span>
+              ) : (
+                calendar && (
+                  <ChevronRightIcon className="size-4 text-textsecond" />
+                )
+              )}
             </div>
           </button>
         }
@@ -174,11 +224,18 @@ export const UpcomingAppoint = ({
               </div>
             </div>
           </div>
-
+          <DrawerClose
+            onClick={handleMakeDoneBtn}
+            render={
+              <button className="bg-textsecond text-white w-full p-3 rounded-xl text-[16px] hover:bg-textsecond/20 transition-colors cursor-pointer" />
+            }
+          >
+            Отметить выполненной
+          </DrawerClose>
           <DrawerClose
             onClick={handleCancelStatusBtn}
             render={
-              <button className="bg-textsecond text-white w-full p-3 rounded-xl text-[16px] hover:bg-textsecond/20 transition-colors cursor-pointer" />
+              <button className="bg-white border border-textsecond/20 text-textsecond w-full p-3 rounded-xl text-[16px] hover:bg-textsecond/20 transition-colors cursor-pointer" />
             }
           >
             Отменить запись

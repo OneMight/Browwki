@@ -59,11 +59,21 @@ const serviceRouter = createRoute({
     }))
   )
 });
+const calendarRouter = createRoute({
+  getParentRoute: () => rootRouter,
+  path: ROUTES.SCHEDULE,
+  component: React.lazy(() =>
+    import("@/pages/CalendarPages").then((module) => ({
+      default: module.CalendarPage
+    }))
+  )
+});
 export {
   indexRouter,
   rootRouter,
   adminRouter,
   slotsRouter,
   clientRoute,
-  serviceRouter
+  serviceRouter,
+  calendarRouter
 };
