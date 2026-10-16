@@ -1,10 +1,12 @@
 import {
   addDays,
+  endOfWeek,
   format,
   getDay,
   isValid,
   parseISO,
-  startOfDay
+  startOfDay,
+  startOfWeek
 } from "date-fns";
 import { ru } from "date-fns/locale";
 export function formatDuration(minutes: number): string {
@@ -86,4 +88,23 @@ export const formatTimeToISO = (
   const fulltime = `${date}T${time}:00.000Z`;
   const dataObj = new Date(fulltime);
   return dataObj.toISOString();
+};
+
+export const getCurrentWeekRange = () => {
+  const now = new Date();
+
+  const start = startOfWeek(now, { weekStartsOn: 1 });
+  const end = endOfWeek(now, { weekStartsOn: 1 });
+
+  return {
+    start: format(start, "d MMMM", { locale: ru }),
+    end: format(end, "d MMMM", { locale: ru })
+  };
+};
+export const getCurrentMonthRange = () => {
+  const now = new Date();
+  const monthName = format(now, "LLLL", { locale: ru });
+  return (
+    monthName.charAt(0).toUpperCase() + monthName.slice(1)
+  );
 };

@@ -68,6 +68,15 @@ const calendarRouter = createRoute({
     }))
   )
 });
+const reportRouter = createRoute({
+  getParentRoute: () => rootRouter,
+  path: ROUTES.REPORT,
+  component: React.lazy(() =>
+    import("@/pages/ReportPage").then((module) => ({
+      default: module.ReportPage
+    }))
+  )
+});
 export {
   indexRouter,
   rootRouter,
@@ -75,5 +84,6 @@ export {
   slotsRouter,
   clientRoute,
   serviceRouter,
-  calendarRouter
+  calendarRouter,
+  reportRouter
 };

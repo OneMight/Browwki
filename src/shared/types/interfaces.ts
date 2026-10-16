@@ -142,8 +142,7 @@ export type ScheduleSlotResponse = ScheduledDates & {
   appointment: AppointmentShort | null;
 };
 export type AppointmentShort = {
-  client: Pick<Client, "first_name"> &
-    Pick<Client, "username">;
+  client: Pick<Client, "first_name" | "username">;
 } & {
   id: number;
   status: Status;
@@ -153,4 +152,34 @@ export type AppointmentShort = {
 export type AppointmentsPerMonthResponse = Record<
   string,
   ScheduleSlotResponse[]
+>;
+export type DailyStats = {
+  date: string;
+  completed_count: number;
+  total_booked: number;
+};
+export type ServiceTop = {
+  completed_count: number;
+  service_name: string;
+  total_ordered: number;
+};
+export type Stats = {
+  cancelled_appointments: number;
+  completed_appointments: number;
+  total_appointments: number;
+  total_revenue: number;
+  waiting_appointments: number;
+  daily_stats: DailyStats[];
+  top_services: ServiceTop[];
+};
+export interface WeekStatProps {
+  stats: Stats;
+}
+export type TextStatsProps = Pick<
+  Stats,
+  | "cancelled_appointments"
+  | "completed_appointments"
+  | "total_appointments"
+  | "total_revenue"
+  | "waiting_appointments"
 >;

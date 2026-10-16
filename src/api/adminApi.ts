@@ -4,7 +4,8 @@ import type {
   AppointmentsPerMonthResponse,
   MyAppointmentsResponse,
   ScheduledDates,
-  Services
+  Services,
+  Stats
 } from "@/shared/types/interfaces";
 
 export const useGetAppointments = () => {
@@ -148,6 +149,36 @@ export const useGetAppointmentsPerMonth = (
 
   return {
     appointmentsPerMonth,
+    isLoading,
+    isError
+  };
+};
+
+export const useGetStats = (period: string) => {
+  const getStats = async (): Promise<Stats> => {
+    const response = await axiosInstance.get(
+      "api/admin/stats",
+      {
+        params: {
+          period: period
+        }
+      }
+    );
+    return response.data;
+  };
+  const {
+    data: stats,
+    isLoading,
+    isError
+  } = useQuery({
+    queryKey: ["getStats", period],
+    queryFn: getStats,
+    staleTime: 0,
+    gcTime: 0,
+    enabled: !!period
+  });
+  return {
+    stats,
     isLoading,
     isError
   };

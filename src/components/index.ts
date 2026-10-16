@@ -11,6 +11,8 @@ import { LabelnInput } from "./ui/LabelnInput";
 import { ServiceAdd } from "./ui/ServiceAdd";
 import { UpcomingAppoint } from "./ui/UpcomingAppoint";
 import { ServerDay } from "./ui/ServerDay";
+import { TextStats } from "./ui/TextStats";
+import { PopularServices } from "./ui/PopularServices";
 export {
   Header,
   Spinner,
@@ -24,8 +26,11 @@ export {
   LabelnInput,
   ServiceAdd,
   UpcomingAppoint,
-  ServerDay
+  ServerDay,
+  TextStats,
+  PopularServices
 };
+export * as Chart from "./ui/Chart";
 export * as Alert from "./ui/Alert";
 export * as Tabs from "./ui/tabs";
 export * as Progress from "./ui/progress";

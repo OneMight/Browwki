@@ -5,7 +5,8 @@ import {
   slotsRouter,
   clientRoute,
   serviceRouter,
-  calendarRouter
+  calendarRouter,
+  reportRouter
 } from ".";
 
 export const routeTree = rootRouter.addChildren([
@@ -14,5 +15,6 @@ export const routeTree = rootRouter.addChildren([
   slotsRouter,
   clientRoute,
   serviceRouter,
-  calendarRouter
+  calendarRouter,
+  reportRouter
 ]);
