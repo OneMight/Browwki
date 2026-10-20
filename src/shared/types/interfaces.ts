@@ -124,6 +124,16 @@ export interface LabelnInputProps {
   lastValue?: string | number;
   type?: string;
   className?: string;
+  tel?:
+    | "search"
+    | "text"
+    | "none"
+    | "tel"
+    | "url"
+    | "email"
+    | "numeric"
+    | "decimal"
+    | undefined;
   onChange?: (value: string | number) => void;
 }
 

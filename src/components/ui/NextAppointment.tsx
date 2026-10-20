@@ -94,7 +94,7 @@ export const NextAppointment = ({
               <DrawerTrigger
                 render={
                   <button className="w-[50%] cursor-pointer text-white border-white border rounded-xl">
-                    Прдробнее
+                    Подробнее
                   </button>
                 }
               />

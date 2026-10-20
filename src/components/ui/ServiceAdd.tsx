@@ -112,6 +112,7 @@ export const ServiceAdd = () => {
               <LabelnInput
                 label="Длительность, мин"
                 className="w-[48%]"
+                tel="tel"
                 onChange={(val) =>
                   handleUpdateServiceData(
                     "duration_minutes",
@@ -122,6 +123,7 @@ export const ServiceAdd = () => {
               <LabelnInput
                 label="Цена, BYN"
                 className="w-[48%]"
+                tel="tel"
                 onChange={(val) =>
                   handleUpdateServiceData("price", val)
                 }

@@ -160,6 +160,7 @@ export const ServiceComp = ({
                 label="Длительность"
                 lastValue={serviceData.duration_minutes}
                 className="w-[48%]"
+                tel="tel"
                 onChange={(val) =>
                   handleUpdateServiceData(
                     "duration_minutes",
@@ -170,6 +171,7 @@ export const ServiceComp = ({
               <LabelnInput
                 label="Цена, BYN"
                 className="w-[48%]"
+                tel="tel"
                 lastValue={serviceData.price}
                 onChange={(val) =>
                   handleUpdateServiceData("price", val)
