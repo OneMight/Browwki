@@ -19,6 +19,7 @@ export const LabelnInput = ({
       <input
         type={type}
         id={label}
+        inputMode="tel"
         className="bg-white p-2 rounded-2xl border border-textsecond/20 aria-selected:border-textsecond/80 active:border-textsecond/80
         focus:border-textsecond/80
         focus:outline-none"
