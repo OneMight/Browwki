@@ -3,14 +3,14 @@ import { SelectService } from "./ui/SelectService";
 import { ClientAppointments } from "./ui/ClientAppointments";
 import { CreateSlots } from "./ui/CreateSlots";
 import { AdminLayout } from "./ui/AdminLayout";
-import { WeekStat } from "./ui/WeekStat";
-import { ChartPerWeek } from "./ui/ChartPerWeek";
+import { Stat } from "./ui/Stat";
+import { ChartPerDate } from "./ui/ChartPerDate";
 export {
   ClientLayout,
   SelectService,
   ClientAppointments,
   AdminLayout,
   CreateSlots,
-  WeekStat,
-  ChartPerWeek
+  Stat,
+  ChartPerDate
 };

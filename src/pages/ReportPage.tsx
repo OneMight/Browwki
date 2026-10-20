@@ -1,6 +1,6 @@
 import { useGetStats } from "@/api/adminApi";
 import { Spinner, Tabs } from "@/components";
-import { WeekStat } from "@/layouts";
+import { Stat } from "@/layouts";
 import {
   getCurrentMonthRange,
   getCurrentWeekRange
@@ -61,7 +61,7 @@ export const ReportPage = () => {
             }
           >
             {stats ? (
-              <WeekStat stats={stats} />
+              <Stat stats={stats} />
             ) : (
               <Spinner className="size-8" />
             )}
@@ -71,7 +71,13 @@ export const ReportPage = () => {
             className={
               "border-t-2 w-full relative border-secondbg pt-5"
             }
-          ></Tabs.TabsContent>
+          >
+            {stats ? (
+              <Stat stats={stats} />
+            ) : (
+              <Spinner className="size-8" />
+            )}
+          </Tabs.TabsContent>
         </Tabs.Tabs>
       </div>
     </div>

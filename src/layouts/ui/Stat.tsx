@@ -1,8 +1,8 @@
 import { PopularServices, TextStats } from "@/components";
 import type { WeekStatProps } from "@/shared/types/interfaces";
-import { ChartPerWeek } from "./ChartPerWeek";
+import { ChartPerDate } from "./ChartPerDate";
 
-export const WeekStat = ({ stats }: WeekStatProps) => {
+export const Stat = ({ stats }: WeekStatProps) => {
   return (
     <div className="flex flex-col w-full gap-4">
       <TextStats
@@ -17,7 +17,7 @@ export const WeekStat = ({ stats }: WeekStatProps) => {
         waiting_appointments={stats.waiting_appointments}
       />
       <div className="bg-white p-4 rounded-2xl border border-textsecond/20 w-full">
-        <ChartPerWeek />
+        <ChartPerDate daily_stat={stats.daily_stats} />
       </div>
       <div className="flex flex-col w-full gap-4">
         <h2 className="text-2xl font-bold">

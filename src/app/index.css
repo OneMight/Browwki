@@ -56,6 +56,12 @@ body {
   --main-color-app: #3a2729;
   --color-brown: var(--main-color-app);
   --color-secondbg: #f3e6e2;
+  --color-total_booked: rgb(
+    143 80 90 / var(--tw-text-opacity, 0.5)
+  );
+  --colot-completed-count: rgb(
+    143 80 90 / var(--tw-text-opacity, 1)
+  );
   --color-textsecond: rgb(
     143 80 90 / var(--tw-text-opacity, 1)
   );
