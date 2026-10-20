@@ -3,7 +3,7 @@ export {};
 declare global {
   interface Window {
     Telegram?: {
-      WebApp: any;
+      WebApp: TelegramWebApp;
     };
   }
 }
