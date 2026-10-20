@@ -85,7 +85,7 @@ export const formatTimeToISO = (
   date: string | null,
   time: string
 ) => {
-  const fulltime = `${date}T${time}:00.000Z`;
+  const fulltime = `${date}T${time}:00`;
   const dataObj = new Date(fulltime);
   return dataObj.toISOString();
 };
