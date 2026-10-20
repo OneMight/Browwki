@@ -11,14 +11,14 @@ export const LinkNavBar = ({
     <Link
       to={route}
       className={cn(
-        "flex items-center justify-center flex-col text-[12px] p-1 rounded-2xl min-w-15 transition-all",
+        "flex items-center justify-center flex-col text-[10px] py-1 px-0.5 rounded-2xl min-w-full transition-all leading-tight text-center",
         location.pathname == route
           ? "text-textsecond bg-textsecond/30"
           : ""
       )}
     >
       {icon}
-      <span>{title}</span>
+      <span className="truncate w-full">{title}</span>
     </Link>
   );
 };
