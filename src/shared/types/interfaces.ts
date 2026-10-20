@@ -123,6 +123,7 @@ export interface LabelnInputProps {
   label: string;
   lastValue?: string | number;
   type?: string;
+  className?: string;
   onChange?: (value: string | number) => void;
 }
 

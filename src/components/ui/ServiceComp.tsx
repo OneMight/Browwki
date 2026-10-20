@@ -136,11 +136,12 @@ export const ServiceComp = ({
           </DrawerTitle>
           <DrawerDescription
             className={
-              "flex flex-col items-start justify-center gap-2 mb-6"
+              "flex flex-col items-start justify-center gap-1 mb-6"
             }
           >
             <LabelnInput
               label="Название"
+              className="w-full"
               lastValue={serviceData.title}
               onChange={(val) =>
                 handleUpdateServiceData("title", val)
@@ -149,6 +150,7 @@ export const ServiceComp = ({
             <LabelnInput
               label="Описание"
               lastValue={serviceData.description}
+              className="w-full"
               onChange={(val) =>
                 handleUpdateServiceData("description", val)
               }
@@ -157,8 +159,8 @@ export const ServiceComp = ({
               <LabelnInput
                 label="Длительность"
                 lastValue={serviceData.duration_minutes}
-                type="number
-                "
+                type="number"
+                className="w-1/2"
                 onChange={(val) =>
                   handleUpdateServiceData(
                     "duration_minutes",
@@ -168,6 +170,8 @@ export const ServiceComp = ({
               />
               <LabelnInput
                 label="Цена, BYN"
+                type="number"
+                className="w-1/2"
                 lastValue={serviceData.price}
                 onChange={(val) =>
                   handleUpdateServiceData("price", val)

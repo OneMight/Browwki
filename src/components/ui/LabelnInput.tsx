@@ -1,13 +1,18 @@
 import type { LabelnInputProps } from "@/shared/types/interfaces";
+import { cn } from "cn";
 
 export const LabelnInput = ({
   label,
   lastValue,
+  className,
   type = "text",
+
   onChange
 }: LabelnInputProps) => {
   return (
-    <div className="w-full flex flex-col text-start">
+    <div
+      className={cn("flex flex-col text-start", className)}
+    >
       <label htmlFor={label} className="mb-1">
         {label}
       </label>

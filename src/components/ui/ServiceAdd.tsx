@@ -96,21 +96,23 @@ export const ServiceAdd = () => {
           >
             <LabelnInput
               label="Название"
+              className="w-full"
               onChange={(val) =>
                 handleUpdateServiceData("title", val)
               }
             />
             <LabelnInput
               label="Описание"
+              className="w-full"
               onChange={(val) =>
                 handleUpdateServiceData("description", val)
               }
             />
             <div className="flex flex-row w-full gap-10">
               <LabelnInput
-                label="Длительность"
-                type="number
-                "
+                label="Длительность, мин"
+                type="number"
+                className="w-1/2"
                 onChange={(val) =>
                   handleUpdateServiceData(
                     "duration_minutes",
@@ -120,6 +122,8 @@ export const ServiceAdd = () => {
               />
               <LabelnInput
                 label="Цена, BYN"
+                type="number"
+                className="w-1/2"
                 onChange={(val) =>
                   handleUpdateServiceData("price", val)
                 }
