@@ -224,22 +224,26 @@ export const UpcomingAppoint = ({
               </div>
             </div>
           </div>
-          <DrawerClose
-            onClick={handleMakeDoneBtn}
-            render={
-              <button className="bg-textsecond text-white w-full p-3 rounded-xl text-[16px] hover:bg-textsecond/20 transition-colors cursor-pointer" />
-            }
-          >
-            Отметить выполненной
-          </DrawerClose>
-          <DrawerClose
-            onClick={handleCancelStatusBtn}
-            render={
-              <button className="bg-white border border-textsecond/20 text-textsecond w-full p-3 rounded-xl text-[16px] hover:bg-textsecond/20 transition-colors cursor-pointer" />
-            }
-          >
-            Отменить запись
-          </DrawerClose>
+          {appointment.status !== "COMPLETED" && (
+            <>
+              <DrawerClose
+                onClick={handleMakeDoneBtn}
+                render={
+                  <button className="bg-textsecond text-white w-full p-3 rounded-xl text-[16px] hover:bg-textsecond/20 transition-colors cursor-pointer" />
+                }
+              >
+                Отметить выполненной
+              </DrawerClose>
+              <DrawerClose
+                onClick={handleCancelStatusBtn}
+                render={
+                  <button className="bg-white border border-textsecond/20 text-textsecond w-full p-3 rounded-xl text-[16px] hover:bg-textsecond/20 transition-colors cursor-pointer" />
+                }
+              >
+                Отменить запись
+              </DrawerClose>
+            </>
+          )}
         </DrawerDescription>
       </DrawerContent>
     </Drawer>
