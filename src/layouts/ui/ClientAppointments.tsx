@@ -16,7 +16,7 @@ export const ClientAppointments = ({
     );
   }
   return (
-    <div className="flex flex-col gap-7">
+    <div className="flex flex-col w-full gap-7">
       {appointments?.length !== 0 ? (
         <>
           <span className="text-2xl">Предстоящие</span>

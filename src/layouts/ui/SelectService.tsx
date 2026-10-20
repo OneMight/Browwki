@@ -21,7 +21,7 @@ export const SelectService = ({
     <Spinner className="size-4" />;
   }
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col w-full gap-4">
       <h2 className="text-2xl text-textsecond text-start w-full">
         Выберите услугу
       </h2>

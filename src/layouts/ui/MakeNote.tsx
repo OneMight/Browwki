@@ -84,7 +84,7 @@ export const MakeNote = () => {
     setPrice(null);
   };
   return (
-    <div className="flex flex-col gap-4  ">
+    <div className="flex w-full flex-col gap-4  ">
       {step == 0 && (
         <div className="flex flex-col items-start gap-2">
           <img
@@ -111,7 +111,7 @@ export const MakeNote = () => {
         </div>
       </div>
       <motion.div
-        className="flex flex-col items-start gap-4"
+        className="flex flex-col w-full items-start gap-4"
         key={step}
         initial={{ opacity: 0, x: 16 }}
         animate={{ opacity: 1, x: 0 }}
