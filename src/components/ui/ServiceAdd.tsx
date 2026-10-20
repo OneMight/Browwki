@@ -79,7 +79,7 @@ export const ServiceAdd = () => {
             }
           >
             <span className="text-start">
-              Изменить услугу
+              Добавить услугу
             </span>
             <DrawerClose
               render={
@@ -108,7 +108,7 @@ export const ServiceAdd = () => {
                 handleUpdateServiceData("description", val)
               }
             />
-            <div className="flex flex-row w-full gap-1">
+            <div className="flex flex-row w-full gap-3">
               <LabelnInput
                 label="Длительность, мин"
                 className="w-[48%]"
