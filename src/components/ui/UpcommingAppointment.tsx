@@ -21,7 +21,7 @@ export const UpcommingAppointment = ({
         duration: 0.2,
         ease: [0.23, 1, 0.32, 1]
       }}
-      className="flex flex-col gap-5 bg-white p-5 border border-textsecond/20 rounded-2xl"
+      className="flex flex-col w-full gap-5 bg-white p-5 border border-textsecond/20 rounded-2xl"
     >
       <div className="flex flex-row w-full gap-3 ">
         <div className="flex flex-col items-center gap-3">
