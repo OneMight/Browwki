@@ -9,7 +9,7 @@ import {
 } from "lucide-react";
 export const AdminNavBar = () => {
   return (
-    <div className="sticky bottom-0 flex flex-row items-center justify-between border-t pt-2 border-textsecond/20 bg-bgapp">
+    <div className="sticky bottom-0 flex flex-row items-center justify-between border-t pt-2 pb-10 border-textsecond/20 bg-bgapp">
       <LinkNavBar
         route={ROUTES.ADMINHOME}
         icon={<Home />}
