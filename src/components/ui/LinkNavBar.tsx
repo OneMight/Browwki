@@ -11,7 +11,7 @@ export const LinkNavBar = ({
     <Link
       to={route}
       className={cn(
-        "flex items-center justify-center flex-col text-[10px] py-1 px-0.5 rounded-2xl min-w-full transition-all leading-tight text-center",
+        "flex items-center justify-center flex-col text-[10px] py-1 px-0.5 rounded-2xl w-full transition-all leading-tight text-center",
         location.pathname == route
           ? "text-textsecond bg-textsecond/30"
           : ""
