@@ -30,7 +30,7 @@ export const SelectService = ({
         className="flex flex-col items-start"
       >
         {services &&
-          services.map((elem) => {
+          services.map((elem, i) => {
             const active = elem.id === selectedId;
             return (
               <button
@@ -49,8 +49,8 @@ export const SelectService = ({
                 }
                 className={cn(
                   "flex flex-row items-center gap-3 border-[0.5px] border-textsecond/10 w-full bg-white p-3",
-                  elem.id == 1 ? "rounded-t-2xl" : "",
-                  services.length == elem.id
+                  i == 0 ? "rounded-t-2xl" : "",
+                  services.length == i
                     ? "rounded-b-2xl"
                     : 0,
                   "hover:cursor-pointer hover:bg-textsecond/10 transition-all",

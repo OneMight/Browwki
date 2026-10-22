@@ -153,7 +153,7 @@ export const MakeNote = () => {
       </motion.div>
       <div
         className={cn(
-          "sticky py-2 border-t-2 border-secondbg bg-bgapp max-w-110 w-full  bottom-0 z-50 ",
+          "sticky py-4 border-t-2 border-secondbg bg-bgapp max-w-110 w-full h-20 bottom-0 z-50 mb-3",
           step == 2 ? "hidden" : ""
         )}
       >

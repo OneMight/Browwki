@@ -71,7 +71,7 @@ export const ServiceAdd = () => {
           </button>
         }
       ></DrawerTrigger>
-      <DrawerContent>
+      <DrawerContent className="max-h-screen overflow-y-auto pb-[max(1rem,env(safe-area-inset-bottom))]">
         <DrawerHeader>
           <DrawerTitle
             className={

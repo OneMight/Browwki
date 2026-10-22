@@ -102,7 +102,7 @@ export const ServiceComp = ({
           />
         }
       >
-        <div className="flex flex-row items-center justify-between w-full">
+        <div className="flex flex-row items-center justify-between w-full gap-1">
           <div className="w-full text-start">
             <h2 className="text-lg">{title}</h2>
             <span className="text-[12px]">
@@ -116,7 +116,7 @@ export const ServiceComp = ({
           </div>
         </div>
       </DrawerTrigger>
-      <DrawerContent>
+      <DrawerContent className="max-h-screen overflow-y-auto pb-[max(1rem,env(safe-area-inset-bottom))]">
         <DrawerHeader>
           <DrawerTitle
             className={

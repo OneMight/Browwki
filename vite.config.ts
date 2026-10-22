@@ -1,18 +1,17 @@
-import react from '@vitejs/plugin-react'
-import { defineConfig } from 'vite'
-import tailwindcss from '@tailwindcss/vite'
-import path from 'path'
-import basicSsl from '@vitejs/plugin-basic-ssl'
+import react from "@vitejs/plugin-react";
+import { defineConfig } from "vite";
+import tailwindcss from "@tailwindcss/vite";
+import path from "path";
 export default defineConfig({
-  plugins: [react(),  tailwindcss(), basicSsl(),],
+  plugins: [react(), tailwindcss()],
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './src'),
-    },
+      "@": path.resolve(__dirname, "./src")
+    }
   },
   server: {
     port: 5173,
-    host: true, 
-    allowedHosts: true, 
-  },
-})
+    host: true,
+    allowedHosts: true
+  }
+});
