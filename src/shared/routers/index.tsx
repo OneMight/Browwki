@@ -19,7 +19,6 @@ const indexRouter = createRoute({
     }))
   ),
   beforeLoad: () => {
-    console.log("worked");
     CheckRole();
   }
 });

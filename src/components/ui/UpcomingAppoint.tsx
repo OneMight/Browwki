@@ -222,6 +222,16 @@ export const UpcomingAppoint = ({
                   <i className="nbrb-icon">BYN</i>
                 </span>
               </div>
+              <div className="flex flex-row items-center w-full justify-between">
+                <span className="text-[16px] text-black/60">
+                  Согласение на обработку в портфолио
+                </span>
+                <span className="font-bold text-[16px]">
+                  {appointment.portfolio_checkbox
+                    ? "Да"
+                    : "Нет"}
+                </span>
+              </div>
             </div>
           </div>
           {appointment.status !== "COMPLETED" && (

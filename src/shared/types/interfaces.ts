@@ -90,6 +90,8 @@ export interface MyAppointmentsResponse {
   service: Services;
   slot: ScheduledDates;
   status: Status;
+  personal_data_checkbox: boolean;
+  portfolio_checkbox: boolean;
 }
 export type Status =
   | "BOOKED"
@@ -159,6 +161,8 @@ export type AppointmentShort = {
   status: Status;
   service: Services;
   slot: ScheduledDates;
+  personal_data_checkbox: boolean;
+  portfolio_checkbox: boolean;
 };
 export type AppointmentsPerMonthResponse = Record<
   string,

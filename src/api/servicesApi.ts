@@ -61,13 +61,17 @@ export const useGetDate = () => {
 
 export const bookAppointment = async (
   service_id: number,
-  slot_id: number
+  slot_id: number,
+  portfolio: boolean,
+  personalData: boolean
 ) => {
   const response = await axiosInstance.post(
     "/api/appointments",
     {
       service_id: service_id,
-      slot_id: slot_id
+      slot_id: slot_id,
+      personal_data_checkbox: personalData,
+      portfolio_checkbox: portfolio
     }
   );
   return response.data;

@@ -30,6 +30,10 @@ export const ConfirmAppointment = ({
     description: string;
     isError: boolean;
   } | null>(null);
+  const [personalData, setPersonalData] =
+    useState<boolean>(false);
+  const [portfolio, setPortfolio] =
+    useState<boolean>(false);
   const showNotification = (
     title: string,
     description: string,
@@ -48,7 +52,12 @@ export const ConfirmAppointment = ({
       if (!serviceId || !slotId) {
         throw new Error("Не выбрана услуга или слот");
       }
-      return bookAppointment(serviceId, slotId);
+      return bookAppointment(
+        serviceId,
+        slotId,
+        personalData,
+        portfolio
+      );
     },
     onSuccess: () => {
       queryClient.invalidateQueries({
@@ -76,7 +85,12 @@ export const ConfirmAppointment = ({
   const handleBookAppointment = () => {
     mutate();
   };
-
+  const handleSetPersonalCheckbox = () => {
+    setPersonalData((state) => !state);
+  };
+  const handleSetPortfolio = () => {
+    setPortfolio((state) => !state);
+  };
   return (
     <div className="flex flex-col">
       {notification && (
@@ -141,15 +155,82 @@ export const ConfirmAppointment = ({
           </span>
         </div>
       </div>
+      <div className="flex flex-col gap-2">
+        <label
+          htmlFor="personal-data"
+          className="flex flex-row items-center gap-1"
+        >
+          <input
+            id="personal-data"
+            type="checkbox"
+            className="peer sr-only"
+            onChange={handleSetPersonalCheckbox}
+            defaultChecked={personalData}
+          />
+          <div className="w-5 h-5 mt-0.5 shrink-0 rounded-md border border-line bg-ivory flex items-center justify-center transition-all peer-checked:bg-textsecond peer-checked:border-textsecond peer-focus-visible:ring-2 peer-focus-visible:ring-textsecond/50">
+            <svg
+              className="w-3.5 h-3.5 text-white opacity-0 peer-checked:opacity-100 transition-opacity"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="3"
+              viewBox="0 0 24 24"
+            >
+              <polyline points="20 6 9 17 4 12" />
+            </svg>
+          </div>
+          <span className="cursor-pointer">
+            Нажимая на кнопку вы соглашаетесь{" "}
+            <a
+              href="/privacy.html"
+              className="text-textsecond"
+            >
+              с политикой обработки персональных данных
+            </a>
+          </span>
+        </label>
+        <label
+          htmlFor="portfolio"
+          className="flex flex-row items-center gap-1"
+        >
+          <input
+            id="portfolio"
+            type="checkbox"
+            className="peer sr-only"
+            onChange={handleSetPortfolio}
+            defaultChecked={portfolio}
+          />
+          <div className="w-5 h-5 mt-0.5 shrink-0 rounded-md border border-line bg-ivory flex items-center justify-center transition-all peer-checked:bg-textsecond peer-checked:border-textsecond peer-focus-visible:ring-2 peer-focus-visible:ring-textsecond/50">
+            <svg
+              className="w-3.5 h-3.5 text-white opacity-0 peer-checked:opacity-100 transition-opacity"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="3"
+              viewBox="0 0 24 24"
+            >
+              <polyline points="20 6 9 17 4 12" />
+            </svg>
+          </div>
+          <span className="cursor-pointer">
+            Согласен(а) на фотосъемку результатов процедуры
+            и публикацию фотографий в{" "}
+            <span className="text-textsecond">
+              портфолио и социальных сетях мастера{" "}
+            </span>
+          </span>
+        </label>
+      </div>
       <div
         className={cn(
-          "sticky py-2 bg-bgapp max-w-110 w-full  bottom-0 z-50 "
+          "sticky py-2 bg-bgapp max-w-110 w-full flex flex-col gap-2  bottom-0 z-50 "
         )}
       >
         <button
-          className="w-full rounded-xl cursor-pointer text-white items-center bg-textsecond h-10 transition-all disabled:opacity-45"
+          className={cn(
+            "w-full rounded-xl cursor-pointer text-white items-center bg-textsecond h-10 transition-all disabled:opacity-45",
+            "disabled:bg-textsecond/50 disabled:cursor-not-allowed"
+          )}
           onClick={handleBookAppointment}
-          disabled={isPending}
+          disabled={isPending || !personalData}
           aria-disabled={isPending}
         >
           {isPending ? (
