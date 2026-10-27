@@ -15,7 +15,8 @@ export const Days = ({
   handleSelectDate
 }: DaysProps) => {
   const selectDateArray = useMemo(
-    () => Array.from({ length: 7 }, (_, i) => offsetKey(i)),
+    () =>
+      Array.from({ length: 14 }, (_, i) => offsetKey(i)),
     []
   );
 
